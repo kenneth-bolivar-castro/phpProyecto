@@ -18,8 +18,12 @@
 <input type="password" name="clave" placeholder="Contraseña" class="input-48" required>
 <input type="text" name="telefono" placeholder="Telefono" class="input-100">
 <input type="submit" value="Registrar" class="btn-enviar">
+<select name="select" style="visibility: hidden">
+            
+              <option value="normal">normal</option>
+  </select>
 
-<p class="form_link">¿Ya tienes cuenta?<a href="">Ingresa aqui</a></p>
+<p class="form_link">¿Ya tienes cuenta?<a href="login.php">Ingresa aqui</a></p>
 </div>
 </form>
 </body>

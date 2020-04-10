@@ -7,6 +7,8 @@ $correo= $_POST["correo"];
 $usuario= $_POST["usuario"];
 $clave= $_POST["clave"];
 $telefono= $_POST["telefono"];
+$tipo= $_POST["select"];
+
 
 $verificar_usuario= mysqli_query($conexion, "SELECT * FROM Usuarios Where Usuario ='$usuario'");
 if(mysqli_num_rows($verificar_usuario) > 0 ){
@@ -18,10 +20,10 @@ exit;
 }
 
 
-$insertar = "INSERT INTO Usuarios(Nombre, Apellidos, Correo, Usuario, Contra, Telefono) VALUES('$nombre','$apellidos','$correo','$usuario','$clave','$telefono')";
+$insertar = "INSERT INTO Usuarios(Nombre, Apellidos, Correo, Usuario, Contra, Telefono,TipoUsuario) VALUES('$nombre','$apellidos','$correo','$usuario','$clave','$telefono', '$tipo')";
 $result = mysqli_query($conexion,$insertar);
 if(!$result){
-    '<script>
+    echo '<script>
     alert("Error al registrarse")
     window.history.go(-1)
     </script>';
