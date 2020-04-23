@@ -23,7 +23,7 @@
   <!-- Custom styles for this template -->
   <link href="css/resume.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="peticion.js"></script>
+  <script src="peticion.js"></script>
 
 </head>
 
@@ -55,7 +55,7 @@
           <a class="nav-link js-scroll-trigger" href="#skills">Productos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="index.html">Ver pagina</a>
+          <a class="nav-link js-scroll-trigger" href="index.php">Ver pagina</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="login.php">Salir</a>
@@ -82,10 +82,10 @@
           <a href="#">
             <i class="fab fa-github"></i>
           </a>
-          <a href="#">
-            <i class="fab fa-twitter"></i>
+          <a href="https://www.instagram.com/cubeshopcr/?hl=es-la">
+            <i class="fab fa-instagram"></i>
           </a>
-          <a href="#">
+          <a href="https://www.facebook.com/Cubeshopcr506/?ref=br_rs">
             <i class="fab fa-facebook-f"></i>
           </a>
         </div>
@@ -139,6 +139,9 @@
       if (isset($_POST['actu'])) {
         $form->actualizar();
       }
+      if (isset($_POST['pro'])) {
+        $form->insertarproduc();
+      }
     }
 
 
@@ -183,7 +186,7 @@
 
 
 
-          <table class="table">
+          <table class="table" id="myTable">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">#</th>
@@ -225,6 +228,7 @@
               ?>
             </tbody>
           </table>
+          <input class="form-control" id="myInput" type="text" placeholder="buscar..">
 
 
         </div>
@@ -236,12 +240,47 @@
       <div class="w-100">
         <h2 class="mb-5" style="color: white;">Productos</h2>
         <section>
-			<input type="text" name="busqueda" id="busqueda" placeholder="Buscar...">
-		</section>
+          <?php
 
-		<section id="tabla_resultado">
-		<!-- AQUI SE DESPLEGARA NUESTRA TABLA DE CONSULTA -->
-		</section>
+          ?>
+
+          <form enctype="multipart/form-data" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
+            <label><b>Nombre: </b></label>
+            <input type="text" autocomplete="off" name="nombre" placeholder="Producto" />
+            <label><b>Cantidad: </b></label>
+            <input type="text" autocomplete="off" name="cantidad" placeholder="cantidad" />
+            <label><b>estado:</b></label>
+            <input type="text" autocomplete="" name="est" placeholder="Estado" />
+
+            </br>
+
+            </br>
+            <label><b>Descripcion:</b> </label>
+            </br>
+
+            <textarea name="descrip" placeholder="Descripcion"></textarea>
+
+
+            </br>
+
+
+            <!-- imagenes -->
+            <input type="file" name="attached" />
+            </br>
+            </br>
+            <input name="pro" type="submit" value="Ingresar producto" class="btn-enviar"s />
+
+
+          </form>
+
+
+
+
+        </section>
+
+        <section id="tabla_resultado">
+          <!-- AQUI SE DESPLEGARA NUESTRA TABLA DE CONSULTA -->
+        </section>
 
 
       </div>
@@ -263,53 +302,17 @@
 
 </body>
 <script>
-  // $("#nombr").hide();
-  // $("#ape").hide();
-  // $("#correo").hide();
-  // $("#Usu").hide();
-  // $("#contra").hide();
-  // $("#tele").hide();
-  // $("#tipo").hide();
-  // $("#ACEPTAR").hide();
-  // $("#buscar").hide();
-  // var mod = document.getElementById("mod");
+  $(document).ready(function() {
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
+<script>
 
-
-  // function habilitar() {
-    //   let text = "";
-    //   if ($("#mod").text() === "Modificar") {
-    //     $("#nombr").show();
-    //     $("#ape").show();
-    //     $("#correo").show();
-    //     $("#Usu").show();
-    //     $("#contra").show();
-    //     $("#tele").show();
-    //     $("#tipo").show();
-    //     $("#ACEPTAR").show();
-    //     $("#buscar").show();
-
-    //     text = "Ocultar";
-
-    //   } else {
-    //     $("#nombr").hide();
-    //     $("#ape").hide();
-    //     $("#correo").hide();
-    //     $("#Usu").hide();
-    //     $("#contra").hide();
-    //     $("#tele").hide();
-    //     $("#tipo").hide();
-    //     $("#ACEPTAR").hide();
-    //     text = "Modificar";
-
-
-    //   }
-
-
-
-
-
-    // }
-    // $("#mod").html(text);
 </script>
 
 </html>
